@@ -1,8 +1,73 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
-  </head>
-  <body>
-    The best place to start is the "WelcomeController.py" file in app/controllers.
-  </body>
+<head>
+	<meta charset ="utf-8">
+	<title>Quotes - LogIn - Registration - Index Page</title>
+	<meta name="description" content="Quotes - LogIn - Registration home page using Pylot">
+
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/normalize.css">
+</head>
+<body>
+	<div id="wrapper">
+		<h1>Home Page</h1>
+		<div class="box">
+			<h2>Registration</h2>
+			{% with messages = get_flashed_messages(with_categories=true) %}
+				{% if messages %}
+					{% for category, message in messages %}
+						{% if 'reg' in category %}
+							<span class="{{category}}">{{ message }}</span>
+						{% endif %}
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+			<form action="/register" method="POST">
+				<label for='name'>
+					Name: <input type="text" id="name" name="name" placeholder="First Name Last Name" value="">
+				</label>
+				<label for="alias">
+					Alias: <input type="text" id="alias" name="alias" placeholder="Alias" value="">
+				</label>
+				<label for = "email">
+					Email: <input type="text" id="email" name="email" placeholder="Email" value="">
+				</label>
+				<!-- Change type from text to password -->
+				<label for="password">
+					Password: <input type="password" id="password" name="password" placeholder="Password">
+				</label>
+				<label for="conf_password">
+					Confirmation: <input type="password" id="conf_password" name="conf_password" placeholder="Confirm Password">
+				</label>
+				<label for = "birthdate">
+					Date of Birth: <input type="text" id="birthdate" name="birthdate" placeholder="01251986" value="">
+				</label>
+				<input type="submit" value="Submit" name="submit">
+			</form>
+		</div>
+		<div class="box">
+			<h2>Log In</h2>
+			{% with messages = get_flashed_messages(with_categories=true) %}
+				{% if messages %}
+					{% for category, message in messages %}
+						{% if 'log' in category %}
+							<span class="{{category}}">{{ message }}</span>
+						{% endif %}
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+			
+			<form action="/login" method="POST">
+				<label for = "email_log">
+					Email: <input type="text" id="email_log" name="email" placeholder="Email" value="">
+				</label>
+				<label for="password_log">
+					Password: <input type="password" id="password_log" name="password" placeholder="Password">
+				</label>
+				<input type="submit" value="Log In" name="submit">
+				<!-- <input type="submit" value="Clear the form" name="submit"> -->
+			</form>
+		</div>
+	</div>
+</body>
 </html>

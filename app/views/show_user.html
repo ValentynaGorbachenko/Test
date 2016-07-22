@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset ="utf-8">
+	<title>Quotes - LogIn - Registration - Index Page</title>
+	<meta name="description" content="Quotes - LogIn - Registration home page using Pylot">
+
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/normalize.css">
+</head>
+<body>
+	<div id="wrapper">
+		<h1>{{user['alias']}}'s info</h1>
+		<a href="/logout">Log Out</a>
+		<a href="/quotes">Qashboard</a>
+		<div class="box">
+
+			<p>Posts by {{ user['alias'] }}</p>
+			<p>Count: {{ user['count'] }}</p>
+
+			<hr>
+			{% if quotes%}
+					{% for quote in quotes %}
+					<p><span class='error'>{{quote['author']}}: </span> 
+						{{quote['quote']}}
+					</p>
+					{% endfor %}
+				{% endif %}
+		</div>
+		
+	</div>
+</body>
+</html>
